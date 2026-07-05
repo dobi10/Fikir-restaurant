@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Table Reservation | Fikir Restaurant</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f8f5f0;
+}
+
+header{
+background:#8B0000;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+.container{
+max-width:700px;
+margin:40px auto;
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+h2{
+text-align:center;
+color:#8B0000;
+margin-bottom:20px;
+}
+
+label{
+display:block;
+margin-top:15px;
+font-weight:600;
+}
+
+input,select,textarea{
+width:100%;
+padding:12px;
+margin-top:8px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:15px;
+margin-top:25px;
+background:#8B0000;
+color:white;
+border:none;
+border-radius:8px;
+font-size:17px;
+cursor:pointer;
+}
+
+button:hover{
+background:#FFD700;
+color:black;
+}
+
+#message{
+margin-top:20px;
+text-align:center;
+color:green;
+font-weight:bold;
+}
+
+footer{
+background:#8B0000;
+color:white;
+text-align:center;
+padding:30px;
+margin-top:40px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Reserve a Table</h1>
+</header>
+
+<div class="container">
+
+<form id="reservationForm">
+
+<label>Full Name</label>
+<input type="text" required>
+
+<label>Email</label>
+<input type="email" required>
+
+<label>Date</label>
+<input type="date" required>
+
+<label>Time</label>
+<input type="time" required>
+
+<label>Number of Guests</label>
+<select required>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+<option>6+</option>
+</select>
+
+<label>Special Requests</label>
+<textarea placeholder="Optional"></textarea>
+
+<button type="submit">Reserve Table</button>
+
+</form>
+
+<p id="message"></p>
+
+</div>
+
+<footer>
+
+<p>📍 Addis Ababa</p>
+<p>📧 fikir@example.com</p>
+<p>&copy; 2026 Fikir Restaurant</p>
+
+</footer>
+
+<script>
+const form=document.getElementById("reservationForm");
+const message=document.getElementById("message");
+
+form.addEventListener("submit",function(e){
+e.preventDefault();
+
+message.textContent="✅ Your reservation request has been received. We look forward to serving you!";
+
+form.reset();
+});
+</script>
+
+</body>
+</html>
