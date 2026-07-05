@@ -3,12 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fikir Restaurant Admin</title>
+<title>Admin - Fikir Restaurant</title>
 
 <style>
-
 body{
-font-family:Arial,sans-serif;
+font-family:Arial;
 background:#f5f5f5;
 margin:0;
 }
@@ -16,75 +15,80 @@ margin:0;
 header{
 background:#8B0000;
 color:white;
-padding:20px;
 text-align:center;
+padding:20px;
 }
 
 .container{
-max-width:1000px;
+max-width:900px;
 margin:30px auto;
 padding:20px;
 }
 
 .card{
 background:white;
-padding:20px;
-margin-bottom:20px;
+padding:15px;
+margin:10px 0;
 border-radius:10px;
-box-shadow:0 5px 15px rgba(0,0,0,.1);
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
-
-button{
-padding:10px 20px;
-background:#8B0000;
-color:white;
-border:none;
-border-radius:6px;
-cursor:pointer;
-}
-
-button:hover{
-background:#FFD700;
-color:black;
-}
-
 </style>
-
 </head>
 
 <body>
 
 <header>
-
-<h1>Fikir Restaurant Admin Dashboard</h1>
-
+<h1>Restaurant Admin Dashboard</h1>
 </header>
 
-<div class="container">
+<div class="container" id="data">
+Loading reservations...
+</div>
 
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "YOUR_API_KEY",
+authDomain: "YOUR_PROJECT.firebaseapp.com",
+projectId: "YOUR_PROJECT_ID",
+storageBucket: "YOUR_PROJECT.appspot.com",
+messagingSenderId: "YOUR_SENDER_ID",
+appId: "YOUR_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const container = document.getElementById("data");
+
+async function loadReservations(){
+
+const snap = await getDocs(collection(db,"reservations"));
+
+container.innerHTML = "";
+
+snap.forEach(doc=>{
+const r = doc.data();
+
+container.innerHTML += `
 <div class="card">
-
-<h2>Reservations</h2>
-
-<p>All customer reservations will appear here after Firebase is connected.</p>
-
-<button>Refresh</button>
-
+<p><b>Name:</b> ${r.name}</p>
+<p><b>Email:</b> ${r.email}</p>
+<p><b>Date:</b> ${r.date}</p>
+<p><b>Time:</b> ${r.time}</p>
+<p><b>Guests:</b> ${r.guests}</p>
+<p><b>Status:</b> ${r.status}</p>
 </div>
+`;
+});
+}
 
-<div class="card">
+loadReservations();
 
-<h2>Restaurant Information</h2>
-
-<p><strong>Restaurant:</strong> Fikir Restaurant</p>
-
-<p><strong>Location:</strong> Addis Ababa</p>
-
-<p><strong>Email:</strong> fikir@example.com</p>
-
-</div>
-
-</div>
+</script>
 
 </body>
 </html>
