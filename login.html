@@ -50,23 +50,46 @@ color:black;
 <div class="box">
 <h2>Admin Login</h2>
 
-<input id="pass" type="password" placeholder="Enter password">
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
 
 <button onclick="login()">Login</button>
 
 <p id="msg"></p>
 </div>
 
-<script>
-function login(){
-const pass = document.getElementById("pass").value;
+<script type="module">
 
-if(pass === "fikir123"){
-window.location.href = "admin.html";
-}else{
-document.getElementById("msg").innerText = "Wrong password";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyD6G6wHeyMKvtPDU-3wOtvlB6C_VckkFPg",
+authDomain: "fikir-2242a.firebaseapp.com",
+projectId: "fikir-2242a",
+storageBucket: "fikir-2242a.firebasestorage.app",
+messagingSenderId: "1052796260139",
+appId: "1:1052796260139:web:3e2c987cc237fc9941ff6e"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+window.login = function(){
+
+const email = document.getElementById("email").value;
+const password = document.getElementById("password").value;
+
+signInWithEmailAndPassword(auth,email,password)
+.then(()=>{
+window.location.href="admin.html";
+})
+.catch(()=>{
+document.getElementById("msg").innerText="Login failed";
+});
+
 }
-}
+
 </script>
 
 </body>
