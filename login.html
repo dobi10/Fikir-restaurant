@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Admin Login</title>
+
+<style>
+body{
+font-family:Arial;
+background:#111;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.box{
+background:white;
+padding:25px;
+width:300px;
+border-radius:10px;
+text-align:center;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:10px 0;
+}
+
+button{
+width:100%;
+padding:10px;
+background:#8B0000;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+button:hover{
+background:#FFD700;
+color:black;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h2>Admin Login</h2>
+
+<input id="pass" type="password" placeholder="Enter password">
+
+<button onclick="login()">Login</button>
+
+<p id="msg"></p>
+</div>
+
+<script>
+function login(){
+const pass = document.getElementById("pass").value;
+
+if(pass === "fikir123"){
+window.location.href = "admin.html";
+}else{
+document.getElementById("msg").innerText = "Wrong password";
+}
+}
+</script>
+
+</body>
+</html>
