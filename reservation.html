@@ -3,73 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reservation | Fikir Restaurant</title>
+<title>Reservation</title>
 
 <style>
-body{
-font-family:Arial;
-background:#f8f5f0;
-margin:0;
-}
-
-header{
-background:#8B0000;
-color:white;
-text-align:center;
-padding:20px;
-}
-
-.container{
-max-width:600px;
-margin:40px auto;
-background:white;
-padding:25px;
-border-radius:10px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-}
-
-input,select,textarea{
-width:100%;
-padding:10px;
-margin:10px 0;
-border:1px solid #ccc;
-border-radius:6px;
-}
-
-button{
-width:100%;
-padding:12px;
-background:#8B0000;
-color:white;
-border:none;
-border-radius:6px;
-cursor:pointer;
-}
-
-button:hover{
-background:#FFD700;
-color:black;
-}
-
-#msg{
-text-align:center;
-margin-top:10px;
-color:green;
-}
+body{font-family:Arial;background:#f8f5f0;margin:0;}
+header{background:#8B0000;color:white;text-align:center;padding:20px;}
+.container{max-width:500px;margin:40px auto;background:white;padding:20px;border-radius:10px;}
+input,select,textarea{width:100%;padding:10px;margin:8px 0;}
+button{width:100%;padding:12px;background:#8B0000;color:white;border:none;}
+button:hover{background:#FFD700;color:black;}
+#msg{text-align:center;margin-top:10px;color:green;}
 </style>
 </head>
 
 <body>
 
-<header>
-<h1>Table Reservation</h1>
-</header>
+<header><h1>Book a Table</h1></header>
 
 <div class="container">
 
-<form id="reservationForm">
+<form id="form">
 
-<input type="text" placeholder="Full Name" required>
+<input type="text" placeholder="Name" required>
 <input type="email" placeholder="Email" required>
 <input type="date" required>
 <input type="time" required>
@@ -82,9 +37,9 @@ color:green;
 <option>5+ Guests</option>
 </select>
 
-<textarea placeholder="Special Requests"></textarea>
+<textarea placeholder="Special request"></textarea>
 
-<button type="submit">Reserve Table</button>
+<button type="submit">Reserve</button>
 
 </form>
 
@@ -98,21 +53,21 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
-apiKey: "YOUR_API_KEY",
-authDomain: "YOUR_PROJECT.firebaseapp.com",
-projectId: "YOUR_PROJECT_ID",
-storageBucket: "YOUR_PROJECT.appspot.com",
-messagingSenderId: "YOUR_SENDER_ID",
-appId: "YOUR_APP_ID"
+apiKey: "AIzaSyD6G6wHeyMKvtPDU-3wOtvlB6C_VckkFPg",
+authDomain: "fikir-2242a.firebaseapp.com",
+projectId: "fikir-2242a",
+storageBucket: "fikir-2242a.firebasestorage.app",
+messagingSenderId: "1052796260139",
+appId: "1:1052796260139:web:3e2c987cc237fc9941ff6e"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const form = document.getElementById("reservationForm");
+const form = document.getElementById("form");
 const msg = document.getElementById("msg");
 
-form.addEventListener("submit", async (e) => {
+form.addEventListener("submit", async (e)=>{
 e.preventDefault();
 
 await addDoc(collection(db,"reservations"),{
@@ -121,12 +76,12 @@ email: form[1].value,
 date: form[2].value,
 time: form[3].value,
 guests: form[4].value,
-requests: form[5].value,
-status: "Pending",
-createdAt: new Date()
+request: form[5].value,
+status:"Pending",
+time: new Date()
 });
 
-msg.textContent = "✅ Reservation sent successfully!";
+msg.textContent="Reservation sent successfully!";
 form.reset();
 });
 
