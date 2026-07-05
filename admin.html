@@ -3,13 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin</title>
+<title>Admin Dashboard</title>
 
 <style>
 body{font-family:Arial;background:#eee;margin:0;}
 header{background:#8B0000;color:white;text-align:center;padding:20px;}
 .container{max-width:800px;margin:30px auto;}
 .card{background:white;margin:10px 0;padding:15px;border-radius:10px;}
+button{
+margin-right:10px;
+padding:6px 10px;
+border:none;
+cursor:pointer;
+}
+.del{background:red;color:white;}
+.done{background:green;color:white;}
 </style>
 </head>
 
@@ -19,14 +27,12 @@ header{background:#8B0000;color:white;text-align:center;padding:20px;}
 <h1>Admin Dashboard</h1>
 </header>
 
-<div class="container" id="list">
-Loading...
-</div>
+<div class="container" id="list">Loading...</div>
 
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
 apiKey: "AIzaSyD6G6wHeyMKvtPDU-3wOtvlB6C_VckkFPg",
@@ -47,20 +53,33 @@ const snap = await getDocs(collection(db,"reservations"));
 
 list.innerHTML="";
 
-snap.forEach(doc=>{
-const r = doc.data();
+snap.forEach(d=>{
+const r = d.data();
 
 list.innerHTML += `
 <div class="card">
 <p><b>Name:</b> ${r.name}</p>
 <p><b>Email:</b> ${r.email}</p>
 <p><b>Date:</b> ${r.date}</p>
-<p><b>Time:</b> ${r.time}</p>
-<p><b>Guests:</b> ${r.guests}</p>
-<p><b>Status:</b> ${r.status}</p>
+<p><b>Status:</b> ${r.status || "Pending"}</p>
+
+<button class="done" onclick="done('${d.id}')">Done</button>
+<button class="del" onclick="remove('${d.id}')">Delete</button>
 </div>
 `;
 });
+}
+
+window.done = async function(id){
+await updateDoc(doc(db,"reservations",id),{
+status:"Done"
+});
+load();
+}
+
+window.remove = async function(id){
+await deleteDoc(doc(db,"reservations",id));
+load();
 }
 
 load();
