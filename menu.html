@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu | Fikir Restaurant</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f8f5f0;
+}
+
+header{
+background:#8B0000;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+.container{
+max-width:1100px;
+margin:40px auto;
+padding:20px;
+}
+
+h1{
+text-align:center;
+margin-bottom:30px;
+color:#8B0000;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.card h3{
+padding:15px 15px 5px;
+}
+
+.card p{
+padding:0 15px;
+color:#666;
+}
+
+.price{
+padding:15px;
+font-weight:bold;
+color:#8B0000;
+font-size:20px;
+}
+
+button{
+margin:15px;
+width:calc(100% - 30px);
+padding:12px;
+background:#8B0000;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+}
+
+button:hover{
+background:#FFD700;
+color:black;
+}
+
+footer{
+background:#8B0000;
+color:white;
+text-align:center;
+padding:30px;
+margin-top:40px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>Fikir Restaurant Menu</h1>
+</header>
+
+<div class="container">
+
+<div class="grid">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=80">
+<h3>Kitfo</h3>
+<p>Traditional Ethiopian minced beef served fresh.</p>
+<div class="price">350 ETB</div>
+<button>Order</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80">
+<h3>Doro Wat</h3>
+<p>Spicy chicken stew served with injera.</p>
+<div class="price">420 ETB</div>
+<button>Order</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=80">
+<h3>Tibs</h3>
+<p>Grilled beef with onions, peppers and spices.</p>
+<div class="price">390 ETB</div>
+<button>Order</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=80">
+<h3>Pizza</h3>
+<p>Fresh oven-baked pizza with cheese.</p>
+<div class="price">450 ETB</div>
+<button>Order</button>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+<p>📍 Addis Ababa</p>
+
+<p>📧 fikir@example.com</p>
+
+<p>&copy; 2026 Fikir Restaurant</p>
+
+</footer>
+
+</body>
+  </html>
